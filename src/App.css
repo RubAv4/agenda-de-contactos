@@ -1,9 +1,25 @@
+/* ======== Estilo general ======== */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: #f5f5f5;
+  color: #111;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+/* ======== App wrapper ======== */
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* ======== Encabezado ======== */
 .app-header {
   background-color: #f0f0f0;
   padding: 1rem 2rem;
@@ -13,11 +29,20 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+body.dark .app-header {
+  background-color: #2c2c2c;
+}
+
 .app-header h1 {
   margin: 0;
   color: #333;
 }
 
+body.dark .app-header h1 {
+  color: #fff;
+}
+
+/* ======== Main container ======== */
 .app-main {
   flex: 1;
   padding: 2rem;
@@ -26,14 +51,33 @@
   width: 100%;
 }
 
-.form-section {
-  background: white;
+/* ======== Secciones (Formulario / Lista) ======== */
+.form-section,
+.contacts-section {
+  background-color: white;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 2rem;
 }
 
+body.dark .form-section,
+body.dark .contacts-section {
+  background-color: #2c2c2c;
+  box-shadow: 0 0 10px #000;
+}
+
+/* ======== Título de secciones ======== */
+.section-title {
+  color: #333;
+  transition: color 0.3s;
+}
+
+body.dark .section-title {
+  color: #f5f5f5;
+}
+
+/* ======== Formulario de contacto ======== */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -52,13 +96,26 @@
   color: #555;
 }
 
-.form-group input {
+body.dark .form-group label {
+  color: #ddd;
+}
+
+.form-group input,
+.search-input {
   padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
 }
 
+body.dark .form-group input,
+body.dark .search-input {
+  background-color: #2c2c2c;
+  color: white;
+  border: 1px solid #555;
+}
+
+/* ======== Acciones del formulario ======== */
 .form-actions {
   display: flex;
   gap: 1rem;
@@ -75,7 +132,7 @@
 }
 
 .form-actions button[type="submit"] {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -92,23 +149,16 @@
   background-color: #da190b;
 }
 
-.contacts-section {
-  background: white;
-  padding: 2rem;
+/* ======== Lista de contactos ======== */
+.contact-list {
+  margin-top: 1rem;
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 }
 
-.search-bar {
-  margin-bottom: 1.5rem;
-}
-
-.search-input {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
+body.dark .contact-list {
+  background-color: #1e1e1e;
 }
 
 .contact-list ul {
@@ -125,10 +175,15 @@
   border-bottom: 1px solid #eee;
 }
 
+body.dark .contact-item {
+  border-bottom: 1px solid #444;
+}
+
 .contact-item:last-child {
   border-bottom: none;
 }
 
+/* ======== Acciones por contacto ======== */
 .contact-actions {
   display: flex;
   gap: 0.5rem;
@@ -144,7 +199,7 @@
 }
 
 .contact-actions button:first-child {
-  background-color: #2196F3;
+  background-color: #2196f3;
   color: white;
 }
 
@@ -161,22 +216,77 @@
   background-color: #da190b;
 }
 
+body.dark .contact-actions button:first-child {
+  background-color: #64b5f6;
+}
+
+body.dark .contact-actions button:last-child {
+  background-color: #ef5350;
+}
+
+/* ======== Barra de búsqueda ======== */
+.search-bar {
+  margin-bottom: 1.5rem;
+}
+
+/* ======== Texto cuando no hay contactos ======== */
 .empty-message {
   text-align: center;
   color: #999;
   padding: 2rem;
 }
 
+body.dark .empty-message {
+  color: #ccc;
+}
+
+/* ======== Botón de modo oscuro / claro ======== */
 .theme-toggle {
   padding: 0.5rem 1rem;
-  border: none;
+  border: 1px solid #333;
   border-radius: 4px;
-  background-color: #666;
-  color: white;
+  background-color: #ccc; /* Fondo claro en modo claro */
+  color: #000; /* Texto negro en modo claro */
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .theme-toggle:hover {
-  background-color: #555;
+  background-color: #bbb;
+}
+
+body.dark .theme-toggle {
+  background-color: #444; /* Fondo más oscuro en modo oscuro */
+  color: #fff; /* Texto blanco en modo oscuro */
+  border-color: #f5f5f5;
+}
+/* Estilo base para todos los select */
+select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: all 0.3s ease;
+  appearance: none; /* Quitar la flechita por defecto en algunos navegadores */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='292.362' height='292.362'%3E%3Cpath fill='%23333' d='M287 69.2L166.8 189.4c-4.8 4.8-12.5 4.8-17.3 0L5.3 69.2C-1.7 62.3-1.7 51.2 5.3 44.3c7-7 18.3-7 25.2 0L146.2 160 261.9 44.3c7-7 18.3-7 25.2 0 7 6.9 7 18 0 24.9z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 0.65rem auto;
+}
+
+/* Oscuro */
+body.dark select {
+  background-color: #222;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+
+/* Al enfocar */
+select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
 }
